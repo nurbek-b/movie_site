@@ -66,7 +66,7 @@ class Movie(models.Model):
     category = models.ForeignKey(Category, verbose_name="Категории",
                                  on_delete=models.SET_NULL, null=True)
     url = models.SlugField(max_length=160, unique=True)
-    draft = models.BooleanField("Чкрновик", default=False)
+    draft = models.BooleanField("Черновик", default=False)
 
     def __str__(self):
         return self.title
@@ -91,7 +91,7 @@ class MovieShots(models.Model):
 
     class Meta:
         verbose_name = "Кадр из фильма"
-        verbose_name_plural = "Кадрв из фильма"
+        verbose_name_plural = "Кадры из фильма"
 
 
 class RatingStar(models.Model):
