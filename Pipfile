@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 django = "==3.0.2"
 pillow = "*"
+django-ckeditor = "==5.8.0"
+install = "*"
 
 [requires]
 python_version = "3.6"
