@@ -3,11 +3,13 @@ from django.utils.safestring import mark_safe
 from django import forms
 from .models import *
 
+from modeltranslation.admin import TranslationAdmin
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 
 class MovieAdminForm(forms.ModelForm):
-    description = forms.CharField(label='Описание', widget=CKEditorUploadingWidget())
+    description_ru = forms.CharField(label='Описание', widget=CKEditorUploadingWidget())
+    description_en = forms.CharField(label='Описание', widget=CKEditorUploadingWidget())
 
     class Meta:
         model = Movie
@@ -15,7 +17,7 @@ class MovieAdminForm(forms.ModelForm):
 
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(TranslationAdmin):
     """Администрирования категории"""
     list_display = ('id', 'name', 'url')
     list_display_links = ('name',)
@@ -40,14 +42,14 @@ class MovieShotInline(admin.TabularInline):
 
 
 @admin.register(Genre)
-class GenreAdmin(admin.ModelAdmin):
+class GenreAdmin(TranslationAdmin):
     """Жанры"""
     list_display = ('id', 'name', 'url')
     list_display_links = ('name',)
 
 
 @admin.register(Movie)
-class MovieAdmin(admin.ModelAdmin):
+class MovieAdmin(TranslationAdmin):
     """Администрирование фильмов"""
     list_display = ('id', 'title', 'category', 'url', 'draft')
     list_display_links = ('title',)
@@ -121,7 +123,7 @@ class ReviewsAdmin(admin.ModelAdmin):
 
 
 @admin.register(MovieShots)
-class MovieShotsAdmin(admin.ModelAdmin):
+class MovieShotsAdmin(TranslationAdmin):
     """Администрирование кадров из фильма"""
     list_display = ("id", "title", "movie", "get_image")
     readonly_fields = ("get_image",)
@@ -133,7 +135,7 @@ class MovieShotsAdmin(admin.ModelAdmin):
 
 
 @admin.register(Actor)
-class ActorAdmin(admin.ModelAdmin):
+class ActorAdmin(TranslationAdmin):
     """Администрирование модели актеров"""
     list_display = ("id", "name", "age", "description", "get_image")
     readonly_fields = ("get_image",)
