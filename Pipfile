@@ -12,6 +12,7 @@ django-ckeditor = "==5.8.0"
 install = "*"
 django-recaptcha3 = "==0.1.0"
 django-modeltranslation = "*"
+django-allauth = "*"
 
 [requires]
 python_version = "3.6"
